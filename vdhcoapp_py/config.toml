@@ -1,0 +1,263 @@
+[meta]
+id = "net.downloadhelper.coapp"
+name = "VdhCoApp"
+long_name = "DownloadHelper CoApp"
+description = "Video DownloadHelper companion app"
+version = "2.0.19"
+
+[package]
+binary_name = "vdhcoapp" # .exe added automatically
+ffmpeg_build_version = "2.0.5"
+filepicker_build_version = "1.0.1"
+
+[package.windows]
+publisher = "ACLAP"
+certificate = "private/windows-cert.p12"
+
+[package.mac]
+category = "public.app-category.utilities"
+icon_icns = "icon.icns"
+
+[package.mac.signing]
+keychain_profile = "aclap"
+name = "ACLAP"
+pkg_cert = "Developer ID Installer: ACLAP (4YP9AW3WW3)"
+app_cert = "Developer ID Application: ACLAP (4YP9AW3WW3)"
+
+[package.deb]
+maintainer = "Michel Gutierrez <coapp@downloadhelper.net>"
+section = "base"
+priority = "optional"
+homepage = "https://github.com/aclap-dev/vdhcoapp"
+installedSize = 100000
+Copyright = "2018-2023 Michel Gutierrez"
+License = "GPL-2.0"
+Files = "*"
+
+[store.mozilla.manifest]
+type = "stdio"
+allowed_extensions = [
+  "weh-native-test@downloadhelper.net",
+  "video-downloadhelper-dev@aclap.com",
+  "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}",
+]
+
+# Note: we allow Chrome extensions to work with Edge and vice versa.
+# This allows some exotic configurations like Chrome extensions on
+# Edge and Microsft extension on Brave for example.
+
+[store.google.manifest]
+type = "stdio"
+allowed_origins = [
+  "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/", # Chrome Stable
+  "chrome-extension://pfoiagbblcbmognbkekfpodpidedkmcc/", # Chrome Beta
+  "chrome-extension://jmkaglaafmhbcpleggkmaliipiilhldn/", # Edge Stable
+  "chrome-extension://fojefjolbhfidomcaelhceoldmmpcaga/", # Edge Beta
+  "chrome-extension://pjnmophheinoclbleifnpiagghigifbm/", # Dev
+]
+
+[store.microsoft.manifest]
+type = "stdio"
+allowed_origins = [
+  "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/", # Chrome Stable
+  "chrome-extension://pfoiagbblcbmognbkekfpodpidedkmcc/", # Chrome Beta
+  "chrome-extension://jmkaglaafmhbcpleggkmaliipiilhldn/", # Edge Stable
+  "chrome-extension://fojefjolbhfidomcaelhceoldmmpcaga/", # Edge Beta
+  "chrome-extension://pjnmophheinoclbleifnpiagghigifbm/", # Dev
+]
+
+[flatpak]
+ids = [
+  "org.mozilla.firefox",
+  "com.brave.Browser",
+  "com.google.Chrome",
+  "com.google.ChromeDev",
+  "org.chromium.Chromium",
+  "com.github.Eloston.UngoogledChromium",
+  "com.microsoft.Edge",
+  "com.microsoft.EdgeDev",
+]
+
+# Location of the native messaging manifests. See:
+# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests
+# https://developer.chrome.com/docs/extensions/mv3/nativeMessaging/#native-messaging-host-location
+# https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/developer-guide/native-messaging?tabs=v3%2Cwindows
+
+### WINDOWS REGS ###
+
+[store.mozilla.msg_manifest_paths.windows]
+regs = [ "Software\\Mozilla\\NativeMessagingHosts", "Software\\ComodoGroup\\NativeMessagingHosts" ]
+
+[store.google.msg_manifest_paths.windows]
+regs = [ "Software\\Google\\Chrome\\NativeMessagingHosts", "Software\\Chromium\\NativeMessagingHosts" ]
+
+[store.microsoft.msg_manifest_paths.windows]
+regs = [ "Software\\Microsoft\\Edge\\NativeMessagingHosts\\" ]
+
+### MOZILLA MAC USER ###
+
+[[store.mozilla.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Mozilla/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Mozilla/"
+
+### MOZILLA MAC SYSTEM ###
+
+[[store.mozilla.msg_manifest_paths.mac.system]]
+path = "/Library/Application Support/Mozilla/NativeMessagingHosts/"
+only_if_dir_exists = "/Library/Application Support/Mozilla/"
+
+### GOOGLE MAC USER ###
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Vivaldi/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Vivaldi/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Chromium/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Chromium/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Google/Chrome Beta/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Google/Chrome Beta/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Google/Chrome Canary/NativeMessagingHosts/"
+only_if_dir_exists =  "~/Library/Application Support/Google/Chrome Canary/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Google/Chrome Dev/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Google/Chrome Dev/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Google/Chrome/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Google/Chrome/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/BraveSoftware/Brave-Browser/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/BraveSoftware/Brave-Browser/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/BraveSoftware/Brave-Browser-Nightly/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/BraveSoftware/Brave-Browser-Nightly/"
+
+[[store.google.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Opera/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Opera/"
+
+### GOOGLE MAC SYSTEM ###
+
+[[store.google.msg_manifest_paths.mac.system]]
+path = "/Library/Google/Chrome/NativeMessagingHosts/"
+only_if_dir_exists = "/Library/Google/Chrome/"
+
+[[store.google.msg_manifest_paths.mac.system]]
+path = "/Library/Application Support/Chromium/NativeMessagingHosts/"
+only_if_dir_exists = "/Library/Application Support/Chromium/"
+
+### MICROSOFT MAC USER ###
+
+[[store.microsoft.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Microsoft Edge Beta/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Microsoft Edge Beta/NativeMessagingHosts/"
+
+[[store.microsoft.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Microsoft Edge Canary/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Microsoft Edge Canary/"
+
+[[store.microsoft.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Microsoft Edge Dev/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Microsoft Edge Dev/"
+
+[[store.microsoft.msg_manifest_paths.mac.user]]
+path = "~/Library/Application Support/Microsoft Edge/NativeMessagingHosts/"
+only_if_dir_exists = "~/Library/Application Support/Microsoft Edge/"
+
+### MICROSOFT MAC SYSTEM ###
+
+[[store.microsoft.msg_manifest_paths.mac.system]]
+path = "/Library/Application Support/Microsoft Edge/NativeMessagingHosts/"
+only_if_dir_exists = "/Library/Application Support/Microsoft Edge/"
+
+[[store.microsoft.msg_manifest_paths.mac.system]]
+path = "/Library/Microsoft/Edge/NativeMessagingHosts/"
+only_if_dir_exists = "/Library/Microsoft/Edge/"
+
+### MOZILLA LINUX USER ###
+
+[store.mozilla.msg_manifest_paths.linux]
+user = [
+  "~/.mozilla/native-messaging-hosts/",
+  "~/.var/app/org.mozilla.firefox/.mozilla/native-messaging-hosts"
+]
+
+### MOZILLA LINUX SYSTEM ###
+
+[[store.mozilla.msg_manifest_paths.linux.system]]
+path = "/usr/lib/mozilla/native-messaging-hosts/"
+only_if_dir_exists = "/usr/lib/mozilla/"
+
+### GOOGLE LINUX USER ###
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/google-chrome/NativeMessagingHosts/"
+only_if_dir_exists = "~/.config/google-chrome/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/chromium/NativeMessagingHosts/"
+only_if_dir_exists = "~/.config/chromium/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/vivaldi/NativeMessagingHosts"
+only_if_dir_exists = "~/.config/vivaldi/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/vivaldi-snapshot/NativeMessagingHosts"
+only_if_dir_exists = "~/.config/vivaldi-snapshot/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/BraveSoftware/Brave-Browser/NativeMessagingHosts"
+only_if_dir_exists = "~/.config/BraveSoftware/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.config/opera/NativeMessagingHosts"
+only_if_dir_exists = "~/.config/opera/"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.var/app/com.brave.Browser/config/BraveSoftware/Brave-Browser/NativeMessagingHosts"
+only_if_dir_exists = "~/.var/app/com.brave.Browser"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.var/app/com.google.Chrome/config/google-chrome/NativeMessagingHosts"
+only_if_dir_exists = "~/.var/app/com.google.Chrome"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.var/app/org.chromium.Chromium/config/chromium/NativeMessagingHosts"
+only_if_dir_exists = "~/.var/app/com.chromium.Chromium"
+
+[[store.google.msg_manifest_paths.linux.user]]
+path = "~/.var/app/com.github.Eloston.UngoogledChromium/config/chromium/NativeMessagingHosts"
+only_if_dir_exists = "~/.var/app/com.github.Eloston.UngoogledChromium"
+
+### GOOGLE LINUX SYSTEM ###
+
+[[store.google.msg_manifest_paths.linux.system]]
+path = "/etc/opt/chrome/native-messaging-hosts/"
+only_if_dir_exists = "/etc/opt/chrome/"
+
+[[store.google.msg_manifest_paths.linux.system]]
+path = "/etc/chromium/native-messaging-hosts/"
+only_if_dir_exists = "/etc/chromium/"
+
+### MICROSOFT LINUX USER ###
+[[store.microsoft.msg_manifest_paths.linux.user]]
+path = "~/.config/microsoft-edge/NativeMessagingHosts"
+only_if_dir_exists = "~/.config/microsoft-edge/"
+
+[[store.microsoft.msg_manifest_paths.linux.user]]
+path = "~/.var/app/com.microsoft.Edge/config/microsoft-edge/NativeMessagingHosts"
+only_if_dir_exists = "~/.var/app/com.microsoft.Edge"
+
+### MICROSOFT LINUX SYSTEM ###
+[[store.microsoft.msg_manifest_paths.linux.system]]
+path = "/etc/opt/edge/native-messaging-hosts/"
+only_if_dir_exists = "/etc/opt/edge/"
