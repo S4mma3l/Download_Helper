@@ -2,7 +2,7 @@
 
 ## 🐍 Visión General del Proyecto
 
-Este proyecto es una recreación funcional y modular de la aplicación auxiliar (**Companion Application** o **CoApp**) utilizada por la extensión de navegador [Video DownloadHelper](https://downloadhelper.net/). El código original basado en Node.js ha sido **portado íntegramente a Python** para ofrecer una solución multiplataforma y extensible para tareas que requieren acceso de bajo nivel al sistema, como:
+Este proyecto es una recreación funcional y modular de la aplicación auxiliar (**Companion Application** o **CoApp**) utilizada por la extensión de navegador [Video DownloadHelper](https://downloadhelper.net/). El código original basado en Node.js ha sido **importado íntegramente a Python** para ofrecer una solución multiplataforma y extensible para tareas que requieren acceso de bajo nivel al sistema, como:
 
 1.  **Conversión de Video:** Utilizando el binario FFmpeg para manipular y transformar *streams* de video.
 2.  **Descargas Autónomas:** Ejecución de descargas de archivos grandes (incluyendo contenido autenticado con cookies) desde la línea de comandos (CLI).
